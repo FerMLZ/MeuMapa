@@ -33,7 +33,7 @@
 
 
         <EditText
-            android:id="@+id/EditText"
+            android:id="@+id/lat"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:background="@drawable/borda"
@@ -48,7 +48,7 @@
 
 
         <EditText
-            android:id="@+id/EditText2"
+            android:id="@+id/lgn"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:background="@drawable/borda"
@@ -66,10 +66,11 @@
         android:layout_marginBottom="160dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/teal_700"
+            android:onClick="onClickbtn1"
             android:text="Calcular" />
 
     </LinearLayout>

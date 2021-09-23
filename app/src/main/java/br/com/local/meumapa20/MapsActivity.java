@@ -1,10 +1,16 @@
 package br.com.local.meumapa20;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -17,9 +23,14 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.security.PrivateKey;
+
+public class  MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     double latitude, longitude;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +40,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intentRecebedora = getIntent();
+        Bundle Parametros = intentRecebedora.getExtras();
+
+        if (Parametros != null){
+
+            double latitude = Parametros.getDouble("Chave_lat");
+            double longitude = Parametros.getDouble("Chave_lgn");
+
+            Toast.makeText(MapsActivity.this, "Latitude = " + latitude + "Longitude = " + longitude, Toast.LENGTH_SHORT).show();
+        }
 
 
     }
@@ -46,13 +68,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latitude = -23.5856101;
         longitude = -46.6669873;
 
-        String local = "Parque do Ibirapuera";
+        String local = "Local inserido";
 
         final LatLng posicao = new LatLng(latitude, longitude);
 
         mMap.addMarker(new MarkerOptions()
                 .position(posicao)
-                .snippet("Local do parque do ibirapuera")
+                .snippet("Local")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ninja))
                 .title(local));
 
